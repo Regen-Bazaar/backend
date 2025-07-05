@@ -73,6 +73,13 @@ const TransactionSchema = new mongoose.Schema({
     tags: [String],
     category: String,
   },
+  nft: {
+    tokenId: String,
+    name: String,
+    description: String,
+    image: String,
+    metadata: mongoose.Schema.Types.Mixed,
+  },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',

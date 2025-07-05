@@ -34,28 +34,33 @@ A robust Node.js Express backend for Web3 applications with MongoDB integration,
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd backend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Set up environment variables:
+
 ```bash
 cp .env.example .env
 # Edit .env with your configuration
 ```
 
 4. Start MongoDB (if running locally):
+
 ```bash
 mongod
 ```
 
 5. Run the application:
+
 ```bash
 # Development mode
 npm run dev
@@ -79,6 +84,7 @@ Copy `.env.example` to `.env` and configure:
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/register` - Register user
 - `POST /api/auth/login` - Login user
 - `POST /api/auth/wallet-login` - Login with wallet signature
@@ -86,6 +92,7 @@ Copy `.env.example` to `.env` and configure:
 - `PUT /api/auth/profile` - Update profile
 
 ### Wallets
+
 - `GET /api/wallets` - Get user wallets
 - `POST /api/wallets` - Add wallet
 - `GET /api/wallets/:address` - Get wallet details
@@ -93,21 +100,70 @@ Copy `.env.example` to `.env` and configure:
 - `GET /api/wallets/:address/transactions` - Get wallet transactions
 
 ### Transactions
+
 - `GET /api/transactions` - Get transactions
 - `POST /api/transactions` - Create transaction
 - `GET /api/transactions/:txHash` - Get transaction details
 - `GET /api/transactions/stats` - Get transaction statistics
 
 ### Web3
+
 - `GET /api/web3/networks` - Get supported networks
 - `GET /api/web3/gas-price` - Get current gas price
 - `POST /api/web3/estimate-gas` - Estimate gas for transaction
 - `GET /api/web3/balance` - Get wallet balance
 
 ### Users
+
 - `GET /api/users` - Get users (admin only)
 - `GET /api/users/:id` - Get user by ID
 - `PUT /api/users/:id` - Update user
+
+### RWIP
+
+- `POST /api/rwip/purchase` - Record a RWIP (NFT) purchase
+
+  **Request Body:**
+
+  ```json
+  {
+    "txHash": "0x...",
+    "blockNumber": 123456,
+    "blockHash": "0x...",
+    "buyerAddress": "0x...",
+    "sellerAddress": "0x...",
+    "price": "1000000000000000000", // in wei
+    "network": "ethereum",
+    "nft": {
+      "tokenId": "1",
+      "name": "RWIP #1",
+      "description": "Rare Web3 Investment Pass",
+      "image": "https://...",
+      "metadata": {
+        /* ... */
+      }
+    },
+    "gasUsed": "21000",
+    "gasPrice": "1000000000",
+    "timestamp": "2024-06-01T12:00:00Z",
+    "tokenAddress": "0x...",
+    "tokenSymbol": "RWIP",
+    "tokenDecimals": 18,
+    "logs": [],
+    "metadata": { "category": "rwip" }
+  }
+  ```
+
+  **Response:**
+
+  ```json
+  {
+    "success": true,
+    "transaction": {
+      /* Transaction object with all details */
+    }
+  }
+  ```
 
 ## Project Structure
 
