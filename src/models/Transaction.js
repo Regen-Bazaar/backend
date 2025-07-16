@@ -51,8 +51,18 @@ const TransactionSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['transfer', 'contract_interaction', 'token_transfer', 'nft_transfer'],
+    enum: ['transfer', 'contract_interaction', 'token_transfer', 'nft_transfer', 'project_sale'],
     default: 'transfer',
+  },
+
+  // Add seller and project fields for project sale tracking
+  seller: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+  },
+  project: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Project',
   },
   tokenAddress: {
     type: String,
