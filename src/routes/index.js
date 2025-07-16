@@ -7,6 +7,7 @@ const userRoutes = require('./users');
 const walletRoutes = require('./wallets');
 const transactionRoutes = require('./transactions');
 const web3Routes = require('./web3');
+const sellerRoutes = require('./seller');
 
 // API version and info
 router.get('/', (req, res) => {
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
       wallets: '/api/wallets',
       transactions: '/api/transactions',
       web3: '/api/web3',
+      seller: '/api/seller',
     },
     documentation: '/api/docs',
   });
@@ -31,5 +33,6 @@ router.use('/users', userRoutes);
 router.use('/wallets', walletRoutes);
 router.use('/transactions', transactionRoutes);
 router.use('/web3', web3Routes);
+router.use('/seller', sellerRoutes);
 
 module.exports = router; 
